@@ -8,3 +8,10 @@ export class First extends React.Component {
     }
 }
 
+export const Second = () => {
+    return (
+        <h3>H3 dumb component...</h3>
+    )
+}
+
+export const Third = <h4>The dumbest component...</h4>
