@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/posts.css"
+import {Link} from 'react-router-dom';
 
 class Posts extends React.Component {
 
@@ -56,7 +57,7 @@ class Posts extends React.Component {
                     <button className={styles.btn} onClick={this.showPrevious}>&laquo;</button>
                     <button className={styles.btn} onClick={this.showNext}>&raquo;</button>
                 </div>
-                {this.state.visiblePosts.map((p, i) => <Post key={i} data={p}/>)}
+                {this.state.visiblePosts.map((p, i) => <Post key={i} data={p} />)}
             </div>
         )
     }
@@ -70,7 +71,9 @@ class Post extends React.Component {
     render () {
         return (
             <div className="post">
-                <h2 className="postTitle">{this.props.data.title}</h2>
+                <h2 className="postTitle">
+                    <Link to={`/post/${this.props.data.id}`}>{this.props.data.title}</Link>
+                </h2>
                 <div style={bodyClass}>{this.props.data.body}</div>
             </div>
         )
