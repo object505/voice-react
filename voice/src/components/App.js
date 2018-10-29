@@ -74,7 +74,7 @@ class App extends React.Component {
                 <Switch>
                     <Route exact path="/" component={Posts} />
                     <Route path="/post/:id" component={PostDetail} />
-                    <PrivateRoute path="/admin" component={PostAdmin} />
+                    <PrivateRoute path="/admin" someVar="test" component={PostAdmin} />
                     <Route exact path="/login" component={Login} />
                 </Switch>
                 {/* <Route path="/admin" component={PostAdmin} /> */}
@@ -90,8 +90,9 @@ class App extends React.Component {
     }
 }
 
-const PrivateRoute = ({component: Component, ...other}) => {
+const PrivateRoute = ({component: Component, someVar, ...other}) => {
     let loggedIn = true;
+    console.log(someVar);
     return (
         window.sessionStorage.getItem('loggedin') ?
         <Component {...other} /> :
