@@ -1,32 +1,28 @@
-import {NEWS_ADD, NEWS_REMOVE} from '../constants/actions';
+import {
+    NEWS_ADD, 
+    NEWS_REMOVE,
+    NEWS_FAILED,
+    NEWS_IS_LOADING,
+    NEWS_SUCCESS
+} from '../constants/actions';
 
 const initialState = {
-    news: [
-        {
-            id: 123,
-            title: 'Some title',
-            body: 'body blah blah blah'
-        },
-        {
-            id: 234,
-            title: 'Other title',
-            body: 'title body blah blah'
-        },
-        {
-            id: 345,
-            title: 'A test title',
-            body: 'body blah blah blah'
-        }
-    ]
+    news: [],
+    newsIsLoading: false,
+    newsFailed: false
 };
 
 export const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case NEWS_ADD:
-            return {...state, news: [...state.news, action.payload]};
+        case NEWS_SUCCESS:
+            console.log(action.payload);
+            return {...state, newsFailed: false, newsIsLoading: false, news: [...state.news, ...action.payload]};
         break;
-        case NEWS_REMOVE:
-            return {...state, news: state.news.filter( n => n.id != action.payload)};
+        case NEWS_FAILED:
+            return {...state, newsFailed: true};
+        break;
+        case NEWS_IS_LOADING:
+            return {...state, newsIsLoading: true};
         break;
         default:
             return state;

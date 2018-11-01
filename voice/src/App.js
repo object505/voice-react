@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import News from './components/News'
-import NewsForm from './components/NewsForm'
+// import NewsForm from './components/NewsForm'
 
 class App extends Component {
 
@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <div>
         <h1>Helloz!</h1>
-        <NewsForm />
+        {/* <NewsForm /> */}
         <News />
       </div>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {newsFetch} from '../actions/News'
 
 const mapStateToProps = (state) => {
     return {
@@ -7,7 +8,20 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        newsFetch: () => {
+            return dispatch(newsFetch())
+        }
+    }
+}
+
 class ConnectedNews extends React.Component {
+
+    componentDidMount () {
+        this.props.newsFetch();
+    }
+
     render () {
         return (
             <div>
@@ -17,5 +31,5 @@ class ConnectedNews extends React.Component {
     }
 }
 
-const News = connect(mapStateToProps)(ConnectedNews);
+const News = connect(mapStateToProps, mapDispatchToProps)(ConnectedNews);
 export default News;
